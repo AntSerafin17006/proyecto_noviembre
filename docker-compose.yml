@@ -18,10 +18,10 @@ services:
     container_name: php-bd
     # LISTA DE VARIABLES DE ENTORNO CON SUS VALORES
     environment:
-      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: miapp
-      MYSQL_USER: pepe
-      MYSQL_PASSWORD: pepe
+      MYSQL_USER: sera
+      MYSQL_PASSWORD: sera
     # REDIRECCIÓN DE PUERTOS (3316 YA LO USA WORDPRESS)
     ports:
       - 3319:3306

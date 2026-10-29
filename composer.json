@@ -1,0 +1,7 @@
+{
+    "name": "app/crud-mvc-dao",
+    "description": "App CRUD PHP con MVC, DAO y Twig",
+    "require": {
+        "twig/twig": "3.30.0"
+    }
+}
