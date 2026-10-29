@@ -1,0 +1,1 @@
+//es la que tiene la main y desde index se le llama y a jugar
