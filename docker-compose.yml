@@ -1,0 +1,47 @@
+services:
+  web:
+    build: ./app
+    container_name: php_xdebug_app
+    ports:
+      - "8383:80"
+    volumes:
+      - ./app:/var/www/html
+    depends_on:
+      - datos
+    networks:
+      - redphp
+
+  datos:
+    # IMAGEN USADA
+    image: mysql:8
+    # NOMBRE DEL CONTENEDOR (DISTINTO AL DE WORDPRESS)
+    container_name: php-bd
+    # LISTA DE VARIABLES DE ENTORNO CON SUS VALORES
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: miapp
+      MYSQL_USER: pepe
+      MYSQL_PASSWORD: pepe
+    # REDIRECCIÓN DE PUERTOS (3316 YA LO USA WORDPRESS)
+    ports:
+      - 3319:3306
+    # VOLUMEN PROPIO, NO TOCA EL DE WORDPRESS
+    volumes:
+      - datosphp:/var/lib/mysql
+    # REDES A USAR
+    networks:
+      - redphp
+
+# DEFINICIÓN DE VOLÚMENES DOCKER
+volumes:
+  datosphp:
+    driver: local
+
+# DEFINICIÓN DE REDES (SUBRED NUEVA, DISTINTA A LA OCUPADA)
+networks:
+  redphp:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.25.0.0/16
